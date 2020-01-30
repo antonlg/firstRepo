@@ -1,0 +1,1 @@
+{"processes":{"5c90def5-c92e-4f52-b944-8e4c9b0e5d03":{"parent":"734fa137-f61f-453e-88a7-18fd62e3b013","children":[]},"734fa137-f61f-453e-88a7-18fd62e3b013":{"parent":null,"children":["5c90def5-c92e-4f52-b944-8e4c9b0e5d03"]}},"files":{"/Users/anton/code/firstRepo/index.js":["5c90def5-c92e-4f52-b944-8e4c9b0e5d03"]},"externalIds":{}}
