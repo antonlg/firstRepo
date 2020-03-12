@@ -58,22 +58,40 @@ I have used *zsh* to do the next configurations but if you use Bash, change the 
 
 Once you downloaded the programms to install, follow these guides:
 
-1. [Prerequisites](https://github.com/giffgaff/giffgaff-re-app/blob/master/docs/system-design/prerequisites.md) guide:
-	a. Install Watchman: brew install watchman
-	b. Install Carthage: brew install carthage
-	c. Install React Native debugger: brew cask install react-native-debugger
-	d. Install Apium: npm install -g appium
-	e. Follow the Android Studio installation steps
-	f. Setup Git Repositories
+#### 3.1 [Prerequisites](https://github.com/giffgaff/giffgaff-re-app/blob/master/docs/system-design/prerequisites.md) guide:
 
-2. [Configuration](https://github.com/giffgaff/development-guidelines/tree/master/config) guide:
-	a. To install Java - you need to create the file .zshrc first. Input these commands:
-	```sh 
-	> cd
-	> nano ~/.zshrc
-	> Copy paste: export JAVA_HOME=`/usr/libexec/java_home`
-	> Press Control + X then Y then Enter to save the file
-	```
+- Install Watchman: *brew install watchman*
+- Install Carthage: *brew install carthage*
+- Install React Native debugger: *brew cask install react-native-debugger*
+- Install Apium: *npm install -g appium*
+- Follow the Android Studio installation steps
+- Setup Git Repositories
+
+#### 3.2 [Configuration](https://github.com/giffgaff/development-guidelines/tree/master/config) guide:
+
+- To install Java - you need to create the file .zshrc first. Input these commands:
+```sh 
+> cd
+> nano ~/.zshrc
+> Copy paste: export JAVA_HOME=`/usr/libexec/java_home`
+> Press Control + X then Y then Enter to save the file
+```
+
+- To install Truststore (certificates)
+	- Step 1: Download the certificates (3 of them, ask the your team)
+	- Step 2: Open a terminal
+	- Step 3: Run these commands
+```sh
+> cd $(/usr/libexec/java_home -v 1.8)/jre/lib/security
+> sudo keytool -keystore cacerts -importcert -alias giffgaff-root -file ~/downloads/giffgaff-Root-CA.cer -storepass changeit
+> sudo keytool -keystore cacerts -importcert -alias giffgaff-staging -file ~/downloads/giffgaffstagingca.cer -storepass changeit
+> sudo keytool -keystore cacerts -importcert -alias giffgaff-live -file ~/downloads/giffgaffliveca.cer -storepass changeit
+```
+
+
+
+
+
 
 
 2. You're now ready to install the rest of the pre-requisites. Open the terminal and:
