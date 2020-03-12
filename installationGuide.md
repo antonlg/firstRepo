@@ -50,12 +50,30 @@ TIP: _In case these steps are now working or you get a SAML error, you might not
 > brew install mvnvm
 ```
 
+https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/
+
 ### 3. Configuration steps:
 
+I have used *zsh* to do the next configurations but if you use Bash, change the code in .bashrc file instead of .zshrc.
 
-```sh
-> brew install node
-```
+Once you downloaded the programms to install, follow these guides:
+
+1. [Prerequisites](https://github.com/giffgaff/giffgaff-re-app/blob/master/docs/system-design/prerequisites.md) guide:
+	a. Install Watchman: brew install watchman
+	b. Install Carthage: brew install carthage
+	c. Install React Native debugger: brew cask install react-native-debugger
+	d. Install Apium: npm install -g appium
+	e. Follow the Android Studio installation steps
+	f. Setup Git Repositories
+
+2. [Configuration](https://github.com/giffgaff/development-guidelines/tree/master/config) guide:
+	a. To install Java - you need to create the file .zshrc first. Input these commands:
+	```sh 
+	> cd
+	> nano ~/.zshrc
+	> Copy paste: export JAVA_HOME=`/usr/libexec/java_home`
+	> Press Control + X then Y then Enter to save the file
+	```
 
 
 2. You're now ready to install the rest of the pre-requisites. Open the terminal and:
