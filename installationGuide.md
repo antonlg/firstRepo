@@ -88,41 +88,97 @@ Once you downloaded the programms to install, follow these guides:
 > sudo keytool -keystore cacerts -importcert -alias giffgaff-live -file ~/downloads/giffgaffliveca.cer -storepass changeit
 ```
 
-
-
-
-
-
-
-2. You're now ready to install the rest of the pre-requisites. Open the terminal and:
-	* Run the script you've just downloaded
-	Example:
-		```sh
-		> sh ~/Desktop/engineeringApps.sh
-		```
-	* [If not installed] Install [Brew](https://brew.sh/ "Brew") (applicable to MAC) & wget
-	* [If not installed] Install [Maven](https://maven.apache.org/download.cgi "Maven")
-	* [If not installed] Install [Node.js](https://treehouse.github.io/installation-guides/mac/node-mac.html "Node")
-	
-
-	- Android and iOS emulators:
-		* [Android Studio](https://developer.android.com/studio/index.html "Android Studio")
-		* [xCode](https://apps.apple.com/us/app/xcode/id497799835 "xCode")
-
-2. 
-
-A statement
-
-_this is italic_
-
-![this is link to an image](./images/FirebaseRemoteConfigDev.png)
-
-```JSX
-<Component name="login" />
-```
-
-check your version of java :
-
+- Download the JCE 8 - you need to create an account
+	- Once the folder is downloaded, go to your JAVA_HOME folder, into the /jre/lib/security:
 ```sh
->java -version
+> cd $JAVA_HOME
+> cd jre/lib/security
 ```
+	- Then copy the jar files you downloaded into this folder
+
+- Configure Maven
+	- Create a m2 folder in ~/.m2: 
+```sh
+> mkdir ~/.m2/
+> touch settings.xml
+```
+	- Copy the settings.xml content into your file and make sure you add the correct password from the One Password vault (ask your team about that)
+
+- Considering you have Docker already installed (and updated), login to Nexus:
+```sh
+> docker login nexus.giffgaff.co.uk
+> Username: giffgaffread
+> Password: insert_password_from_vault
+```
+
+- Git: follow all the steps in the guide:
+	- Create and add the GPG keys to your Git Hub account
+	- Copy the Key ID (from GitHub)
+	- Then add the key to your config:
+```sh
+> git config --global user.signingkey <gpg-key-id>
+> git config --global commit.gpgsign true
+```
+
+
+#### 3.3 Setup your IDEs to run React
+- Install Expo CLI first: npm install -g expo-cli
+- [Android guide](https://reactnative.dev/docs/getting-started.html#android-development-environment)
+	- Install JDK
+	- Follow the steps in the guide
+	- Make sure you install - SDK tools, Android Emulator, SDK Platform-tools and Intel Emulator Accelerator
+	- Also, you have Android 9 installed 
+	- After all is installed, create an AVD (Emulator): Configure -> AVD manager
+	- Create Virtual Device
+		- AVD Name: giffgaff pixel xl
+		- Android 9.0 x86
+		- Type of phone: Pixel XL
+- [xCode (iOS) guide](https://reactnative.dev/docs/getting-started.html#xcode)
+
+#### 3.4 Setup AWS
+- Install AWS: 
+```sh
+> brew install awscli
+```
+- Install AWS Credentials using this [guide](https://docs.staging.gaff.systems/tooling/gimme-creds/)
+- Install gimmeprd using this [guide](https://github.com/giffgaff/giffgaff-re-app/blob/master/docs/dev/android/Readme.md)
+- To test if it works use **gimmeprd**
+	- While you are in e2eTest (re-app folder):
+```sh
+> aws ecr get-login-password | docker login --username AWS --password-stdin https://604083106117.dkr.ecr.eu-west-1.amazonaws.com
+```
+
+### Re-app folder installation:
+1. Copy the re-app and graphql server folders (if you didn’t in Setup Git Repositories)
+```sh
+> git clone git@github.com:giffgaff/giffgaff-re-app.git
+```
+
+2. Copy the stubs folders:
+```sh
+> git clone git@github.com:giffgaff/smart-stubbing-svc.git (to clone this)
+> git clone git@github.com:giffgaff/smart-stub-data-loader.git (to clone this)
+```
+
+3. Copy the ui-packages folder: 
+```sh
+> git clone git@github.com:giffgaff/ui-packages.git
+```
+
+## Erros & Debugging
+1. _Some problems were encountered while processing the POMs_
+**Possible solution**: try logging in the Docker again. Also, run the certificates commands again 
+
+2. _TypeError: Cannot read property 'properties' of undefined_
+**Possible solution**: 
+	- While in graphql-server:
+```sh
+> nvm use 10.15.1
+> npm run build
+> npm start
+```
+	- Sometimes you need to delete all the stub folders, copy them again and re-run **npm i** while in them
+
+3. Sometimes you get an error saying that the port is already in use. 
+**Possible solution**: You can kill that process, re-run Docker, login again and run Stub servers again. A [guide](https://stackoverflow.com/questions/43026358/spring-boot-application-in-eclipse-the-tomcat-connector-configured-to-listen-on) on how to kill those processes
+
