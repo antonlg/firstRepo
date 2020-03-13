@@ -1,4 +1,4 @@
-#Open the app locally
+# Open the app locally
 
 You need 2 terminal tabs:
 ### First tab
