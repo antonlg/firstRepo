@@ -171,13 +171,13 @@ Once you downloaded the programms to install, follow these guides:
 
 2. _TypeError: Cannot read property 'properties' of undefined_
 **Possible solution**: 
+	- Sometimes you need to delete all the stub folders, copy them again and re-run **npm i** while in them
 	- While in graphql-server:
 ```sh
 > nvm use 10.15.1
 > npm run build
 > npm start
 ```
-	- Sometimes you need to delete all the stub folders, copy them again and re-run **npm i** while in them
 
 3. Sometimes you get an error saying that the port is already in use. 
 **Possible solution**: You can kill that process, re-run Docker, login again and run Stub servers again. A [guide](https://stackoverflow.com/questions/43026358/spring-boot-application-in-eclipse-the-tomcat-connector-configured-to-listen-on) on how to kill those processes
