@@ -81,27 +81,27 @@ Once you downloaded the programms to install, follow these guides:
 	- Step 1: Download the certificates (3 of them, ask the your team)
 	- Step 2: Open a terminal
 	- Step 3: Run these commands
-```sh
-> cd $(/usr/libexec/java_home -v 1.8)/jre/lib/security
-> sudo keytool -keystore cacerts -importcert -alias giffgaff-root -file ~/downloads/giffgaff-Root-CA.cer -storepass changeit
-> sudo keytool -keystore cacerts -importcert -alias giffgaff-staging -file ~/downloads/giffgaffstagingca.cer -storepass changeit
-> sudo keytool -keystore cacerts -importcert -alias giffgaff-live -file ~/downloads/giffgaffliveca.cer -storepass changeit
-```
+	```sh
+	> cd $(/usr/libexec/java_home -v 1.8)/jre/lib/security
+	> sudo keytool -keystore cacerts -importcert -alias giffgaff-root -file ~/downloads/giffgaff-Root-CA.cer -storepass changeit
+	> sudo keytool -keystore cacerts -importcert -alias giffgaff-staging -file ~/downloads/giffgaffstagingca.cer -storepass changeit
+	> sudo keytool -keystore cacerts -importcert -alias giffgaff-live -file ~/downloads/giffgaffliveca.cer -storepass changeit
+	```
 
 - Download the JCE 8 - you need to create an account
 	- Once the folder is downloaded, go to your JAVA_HOME folder, into the /jre/lib/security:
-```sh
-> cd $JAVA_HOME
-> cd jre/lib/security
-```
+	```sh
+	> cd $JAVA_HOME
+	> cd jre/lib/security
+	```
 	- Then copy the jar files you downloaded into this folder
 
 - Configure Maven
 	- Create a m2 folder in ~/.m2: 
-```sh
-> mkdir ~/.m2/
-> touch settings.xml
-```
+	```sh
+	> mkdir ~/.m2/
+	> touch settings.xml
+	```
 	- Copy the settings.xml content into your file and make sure you add the correct password from the One Password vault (ask your team about that)
 
 - Considering you have Docker already installed (and updated), login to Nexus:
@@ -115,10 +115,10 @@ Once you downloaded the programms to install, follow these guides:
 	- Create and add the GPG keys to your Git Hub account
 	- Copy the Key ID (from GitHub)
 	- Then add the key to your config:
-```sh
-> git config --global user.signingkey <gpg-key-id>
-> git config --global commit.gpgsign true
-```
+	```sh
+	> git config --global user.signingkey <gpg-key-id>
+	> git config --global commit.gpgsign true
+	```
 
 
 #### 3.3 Setup your IDEs to run React
@@ -144,9 +144,9 @@ Once you downloaded the programms to install, follow these guides:
 - Install gimmeprd using this [guide](https://github.com/giffgaff/giffgaff-re-app/blob/master/docs/dev/android/Readme.md)
 - To test if it works use **gimmeprd**
 	- While you are in e2eTest (re-app folder):
-```sh
-> aws ecr get-login-password | docker login --username AWS --password-stdin https://604083106117.dkr.ecr.eu-west-1.amazonaws.com
-```
+	```sh
+	> aws ecr get-login-password | docker login --username AWS --password-stdin https://604083106117.dkr.ecr.eu-west-1.amazonaws.com
+	```
 
 ### Re-app folder installation:
 1. Copy the re-app and graphql server folders (if you didn’t in Setup Git Repositories)
@@ -165,7 +165,7 @@ Once you downloaded the programms to install, follow these guides:
 > git clone git@github.com:giffgaff/ui-packages.git
 ```
 
-## Erros & Debugging
+## Erors & Debugging
 1. _Some problems were encountered while processing the POMs_
 **Possible solution**: try logging in the Docker again. Also, run the certificates commands again 
 
@@ -173,11 +173,11 @@ Once you downloaded the programms to install, follow these guides:
 **Possible solution**: 
 	- Sometimes you need to delete all the stub folders, copy them again and re-run **npm i** while in them
 	- While in graphql-server:
-```sh
-> nvm use 10.15.1
-> npm run build
-> npm start
-```
+	```sh
+	> nvm use 10.15.1
+	> npm run build
+	> npm start
+	```
 
 3. Sometimes you get an error saying that the port is already in use. 
 **Possible solution**: You can kill that process, re-run Docker, login again and run Stub servers again. A [guide](https://stackoverflow.com/questions/43026358/spring-boot-application-in-eclipse-the-tomcat-connector-configured-to-listen-on) on how to kill those processes
