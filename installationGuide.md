@@ -182,3 +182,11 @@ Once you downloaded the programms to install, follow these guides:
 3. Sometimes you get an error saying that the port is already in use. 
 **Possible solution**: You can kill that process, re-run Docker, login again and run Stub servers again. A [guide](https://stackoverflow.com/questions/43026358/spring-boot-application-in-eclipse-the-tomcat-connector-configured-to-listen-on) on how to kill those processes
 
+- Or use these commands:
+
+	```sh
+	> docker stop $(docker ps -aq)
+	> docker rm $(docker ps -aq)
+	> docker rmi $(docker images -q)
+	> docker volume rm $(docker volume ls -qf dangling=true)%
+	```
